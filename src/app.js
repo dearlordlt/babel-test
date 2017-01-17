@@ -1,15 +1,22 @@
-// Lexical arguments
-function square() {
-  let example = () => {
-    let numbers = [];
-    for (let number of arguments) {
-      numbers.push(number * number);
-    }
+let app = angular.module("app", []).config(() => {
 
-    return numbers;
-  };
+}).controller('ctrl', ['$scope', ($scope) => {
+  // Lexical arguments
+  function square() {
+    let example = () => {
+      let numbers = [];
+      for (let number of arguments) {
+        numbers.push(number * number);
+      }
 
-  return example();
-}
+      return numbers;
+    };
 
-console.log(square(2, 4, 7.5, 8, 11.5, 21)); // returns: [4, 16, 56.25, 64, 132.25, 441]
+    return example();
+  }
+
+  let a = 10;
+
+  $scope.sq = square(2, 4, 7.5, 8, 11.5, 21, a); // returns: [4, 16, 56.25, 64, 132.25, 441]
+}]);
+
